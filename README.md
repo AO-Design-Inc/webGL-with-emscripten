@@ -7,9 +7,9 @@ Upon opening this repository in Gitpod, the provided dockerfile and yml file wil
 
 In the terminal, run the following command to compile src/main.c:
 
-    emcc src/main.c -o index.html
+    emcc src/main.c -o index.js
 
-To open a port to view the html file, run the following command:
+This will produce the js file that will be used in the provided html file. To open a port to view the html file, run the following command:
     
     python -m http.server
 
@@ -17,8 +17,8 @@ To open a port to view the html file, run the following command:
 
 To compile and run this code, you must have Emscripten installed. For instructions on installing Emscripten, visit their [download page](https://emscripten.org/docs/getting_started/downloads.html).
 
-Once you have verified that emscripten is installed, run the following command from the root directory
+Once you have verified that emscripten is installed, run the following command from the root directory:
 
-    emcc src/main.c -o index.html
+    emcc src/main.c -o index.js
 
-The resulting html file can be opened and viewed in any browser.
+This will produce the js file that will be used in the provided html file. The html file can be opened and viewed in any browser.
