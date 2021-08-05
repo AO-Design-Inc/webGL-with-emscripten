@@ -10,6 +10,8 @@ void display() {  // Display function will draw the image.
     glClearColor( 0, 0, 0, 1 );  // (In fact, this is the default.)
     glClear( GL_COLOR_BUFFER_BIT );
     
+    // this is all legacy gl stuff
+    // emcc src/main2.c -o index.js -s MAX_WEBGL_VERSION=2 -s LEGACY_GL_EMULATION=1 -s GL_FFP_ONLY=1
     glBegin(GL_TRIANGLES);
     glColor3f( 1, 0, 0 ); // red
     glVertex2f( -0.8, -0.8 );
@@ -19,7 +21,7 @@ void display() {  // Display function will draw the image.
     glVertex2f( 0, 0.9 );
     glEnd(); 
     
-    glutSwapBuffers(); // Required to copy color buffer onto the screen.
+    //glutSwapBuffers(); // Required to copy color buffer onto the screen.
  
 }
 
@@ -31,20 +33,22 @@ int main( int argc, char** argv ) {  // Initialize GLUT and
 	emscripten_webgl_init_context_attributes(&attr);
 
 	// target the canvas selector
-	EMSCRIPTEN_WEBGL_CONTEXT_HANDLE ctx = emscripten_webgl_create_context("#phone", &attr);
+	EMSCRIPTEN_WEBGL_CONTEXT_HANDLE ctx = emscripten_webgl_create_context("#canvas", &attr);
 	emscripten_webgl_make_context_current(ctx);
+
+    display();
 
     //glClearColor(0.984, 0.4627, 0.502, 1.0);
 	//glClear(GL_COLOR_BUFFER_BIT);
 
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE);    // Use single color buffer and no depth buffer.
-    glutInitWindowSize(500,500);         // Size of display area, in pixels.
-    glutInitWindowPosition(100,100);     // Location of window in screen coordinates.
-    glutCreateWindow("GL RGB Triangle"); // Parameter is window title.
-    glutDisplayFunc(display);            // Called when the window needs to be redrawn.
+    //glutInit(&argc, argv);
+    //glutInitDisplayMode(GLUT_SINGLE);    // Use single color buffer and no depth buffer.
+    //glutInitWindowSize(500,500);         // Size of display area, in pixels.
+    //glutInitWindowPosition(100,100);     // Location of window in screen coordinates.
+    //glutCreateWindow("GL RGB Triangle"); // Parameter is window title.
+    //glutDisplayFunc(display);            // Called when the window needs to be redrawn.
     
-    glutMainLoop(); // Run the event loop!  This function does not return.
+    //glutMainLoop(); // Run the event loop!  This function does not return.
                     // Program ends when user closes the window.
     return 1;
 
